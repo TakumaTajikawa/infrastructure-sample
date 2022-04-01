@@ -22,3 +22,8 @@ terraform {
 provider "aws" {
     region = var.region
 }
+
+# Amazon Linux2のAMIをSSMで管理
+data "aws_ssm_parameter" "amzn2_ami" {
+    name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
+}
