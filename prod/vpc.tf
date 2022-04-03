@@ -106,6 +106,7 @@ resource "aws_route_table_association" "private" {
   route_table_id = aws_route_table.private.id
 }
 
+# VPCピアリング接続(プライベート IPv4 アドレスまたは IPv6 アドレスを使用して 2 つの VPC 間でトラフィックをルーティングすることを可能にするネットワーク接続)を管理するためのリソース
 resource "aws_vpc_peering_connection" "common" {
   peer_vpc_id = aws_vpc.main.id
   vpc_id      = data.terraform_remote_state.common.outputs.vpc_id
