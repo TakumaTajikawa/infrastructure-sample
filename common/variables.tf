@@ -1,5 +1,5 @@
 variable "project" {
-    default = "sample-pj"
+    default = "offkai"
 }
 
 variable "env" {
@@ -11,5 +11,5 @@ variable "region" {
 }
 
 variable "domain" {
-    default = "sample-pj.jp"
+    default = "offkai.site"
 }
