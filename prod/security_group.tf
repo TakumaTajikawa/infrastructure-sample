@@ -7,10 +7,10 @@ resource "aws_security_group" "web" {
   ingress {
     description = "alb"
     # 開始ポート番号、または開始ICMPタイプ番号
-    from_port   = 80
+    from_port = 80
     # 終了ポート番号、または終了ICMPタイプ番号
-    to_port     = 80
-    protocol    = "tcp"
+    to_port  = 80
+    protocol = "tcp"
     security_groups = [
       aws_security_group.alb.id,
     ]
