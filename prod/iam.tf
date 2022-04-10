@@ -46,7 +46,7 @@ resource "aws_iam_role_policy" "ecs_service" {
 # マネージドポリシーを作成したIAMロールに紐づける
 resource "aws_iam_role_policy_attachment" "policy_ecs_task_execution_role_policy_to_ecs_service_attachment" {
   # IAMロール名
-  role       = aws_iam_role.ecs_service.name
+  role = aws_iam_role.ecs_service.name
   # ポリシーARN
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
