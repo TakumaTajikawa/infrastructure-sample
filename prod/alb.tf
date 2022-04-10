@@ -22,7 +22,7 @@ resource "aws_lb" "web" {
 }
 
 resource "aws_lb_target_group" "web" {
-  name        = "${var.env}-${var.project}-tg-web"
+  name = "${var.env}-${var.project}-tg-web"
   # "instance", "ip", "lambda", "alb"いずれかを記入(デフォルトはinstance)
   # instance: インスタンスIDでターゲットを登録する
   # ip: IPアドレスでターゲットを登録する
@@ -35,21 +35,21 @@ resource "aws_lb_target_group" "web" {
 
   # スティッキーセッション
   stickiness {
-    type            = "lb_cookie"
+    type = "lb_cookie"
     # タイプがlb_cookieのときだけ使用される。クライアントからの要求が同じターゲットにルーティングされる期間 (秒単位)。この期間が過ぎると、ロードバランサーによって生成されたクッキーは古いとみなされます。設定可能な範囲は、1 秒から 1 週間（604800 秒）。デフォルト値は1日（86400秒）。
     cookie_duration = 600
     # スティッキネスを有効／無効にするためのブール値。デフォルトはtrue
-    enabled         = false
+    enabled = false
   }
 
   # Application Load Balancerが、登録されたターゲットのステータスをテストするため、定期的にリクエストを送信するテストのこと
   health_check {
     # 不健全なターゲットを健全とみなす前に必要な連続したヘルスチェックの成功回数。デフォルトは３。
-    healthy_threshold   = 5
+    healthy_threshold = 5
     # ターゲットを不健全と見なす前に必要な連続したヘルスチェック失敗の数。ネットワークロードバランサーの場合、この値は healthy_threshold と同じである必要がある。デフォルトは３。
     unhealthy_threshold = 2
     # ヘルスチェック要求の宛先
-    path                = "/healthcheck"
+    path = "/healthcheck"
   }
 
   tags = {
@@ -69,9 +69,9 @@ resource "aws_lb_listener" "web" {
   port              = 443
   protocol          = "HTTPS"
   # リスナーのSSLポリシーの名前。プロトコルがHTTPSまたはTLSの場合は必須。
-  ssl_policy        = "ELBSecurityPolicy-FS-1-2-Res-2020-10"
+  ssl_policy = "ELBSecurityPolicy-FS-1-2-Res-2020-10"
   # 証明書(ACM)のURL
-  certificate_arn   = module.acm_web.this_acm_certificate_arn
+  certificate_arn = module.acm_web.this_acm_certificate_arn
 
   default_action {
     # ルーティングアクションのタイプ。有効な値は、forward、redirect、fixed-response、authenticate-cognito、authenticate-oidcのいずれかを記入する。
