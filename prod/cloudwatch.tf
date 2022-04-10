@@ -76,7 +76,7 @@ resource "aws_cloudwatch_metric_alarm" "app-cpu-high" {
     ClusterName = aws_ecs_cluster.production-offkai.name
     ServiceName = aws_ecs_service.app.name
   }
-
+  # アラーム状態に遷移するときに実行するアクションのリスト。各アクションはAmazonリソース名(ARN)として指定する
   alarm_actions = [aws_appautoscaling_policy.app_scale_out.arn]
 }
 
@@ -98,4 +98,4 @@ resource "aws_cloudwatch_metric_alarm" "app-cpu-low" {
   }
 
   alarm_actions = [aws_appautoscaling_policy.app_scale_in.arn]
-} 
+}
